@@ -1,0 +1,67 @@
+@use "utils" as *;
+@use "global" as *;
+
+.untitled-page {
+  &.root {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: var(--src) center center / 100% 100% no-repeat;
+    background-color: rgb(255 255 255);
+    overflow: hidden;
+  }
+
+  .flex_col {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 47px 0;
+    margin: 366px auto 391px;
+    width: 238px;
+  }
+
+  .text {
+    font: 700 14px/1.42 Montserrat, Helvetica, Arial, serif;
+    color: rgb(255 255 255);
+    letter-spacing: -0.24px;
+  }
+
+  .hero_title {
+    display: flex;
+    justify-content: center;
+    font: 400 64px/0.31 "Dancing Script", Helvetica, Arial, serif;
+    color: rgb(255 225 0);
+    text-align: center;
+    letter-spacing: -0.24px;
+  }
+
+  .wrapper {
+    position: absolute;
+    inset: 260px 0 459px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 180px;
+  }
+
+  .wrapper1 {
+    margin: 10px;
+    width: 160px;
+    height: 105px;
+  }
+
+  .big_title {
+    position: absolute;
+    top: 500px;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 2.37%;
+    font: 400 20px/0.54 Montserrat, Helvetica, Arial, serif;
+    color: rgb(255 255 255);
+    text-align: center;
+    letter-spacing: -0.24px;
+  }
+}
