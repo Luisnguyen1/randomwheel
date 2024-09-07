@@ -53,6 +53,26 @@ if (isset($_REQUEST['phone'])) {
     <link rel="stylesheet" type="text/css" href="web/css/tailwind.css" />
 
     <style>
+        .center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-left: 6%; 
+        }
+
+        input[type="text"] {
+            width: 100%;
+            max-width: 300px;
+            padding-left: 10px;
+            min-height: 38px;
+            border-radius: 5px;
+            outline: none;
+            border: 1px solid rgb(0,165,81);
+            background-color: white;
+            margin-left: 2%;
+        }
+
         .popup {
             display: none;
             /* Ẩn pop-up ban đầu */
@@ -90,7 +110,19 @@ if (isset($_REQUEST['phone'])) {
             padding: 10px 20px;
             border-radius: 5px;
             cursor: pointer;
+            margin-left: 27%;
         }
+
+        .center-text {
+            justify-content: center;
+            align-items: center;
+            text-align: center; 
+            width: 100%;
+            flex-wrap: wrap;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
     </style>
 
 
@@ -125,13 +157,13 @@ if (isset($_REQUEST['phone'])) {
                     </div>
                 </div>
                 <form action="" type="GET">
-                    <div class="mt-[146px] flex w-[84.36%] flex-col gap-y-1">
+                    <div class="center mt-[146px] flex w-[84.36%] flex-col gap-y-1">
                         <!-- Fourth flexible column containing additional contact information. -->
                         <div class="font-Montserrat flex justify-center text-center text-[12px] font-semibold leading-[1.66] tracking-[-0.24px] text-[rgb(0,165,81)]">
                             <!-- Displays the phone number of the dealer. -->
                             Số điện thoại đại lý
                         </div>
-                        <input type="text" name="phone" id="phone" placeholder="  Hãy nhập số điện thoại của bạn !" class="ml-px min-h-[38px] rounded-md bg-white outline outline-1 outline-offset-[-1px] outline-[rgb(0,165,81)]">
+                        <input type="text" name="phone" id="phone" placeholder=" Hãy nhập số điện thoại của bạn !" class="ml-px min-h-[38px] rounded-md bg-white outline outline-1 outline-offset-[-1px] outline-[rgb(0,165,81)]">
                     </div>
                     <!-- Formatting element for visual design. -->
                     <button class="font-Montserrat mt-9 mr-[35px] ml-[25.5px] flex w-80 max-w-full justify-center rounded-md bg-[rgb(0,165,81)] pt-[9px] pr-2 pb-[9px] pl-2 text-center text-[16px] font-bold leading-tight tracking-[-0.24px] text-white outline outline-1 outline-offset-[-1px] outline-[rgb(0,165,81)]">
@@ -146,7 +178,7 @@ if (isset($_REQUEST['phone'])) {
                 Quý khách hàng vui lòng kiểm tra lại thông tin trước khi gửi !
             </p>
         </div>
-        <p class="w-[84.1%]">
+        <p class="w-[84.1%] center-text">
             <!-- Summary paragraph containing contact information for support. -->
             <span class="font-Montserrat text-justify text-[12px] font-medium leading-tight text-black">
                 <span class="font-medium">Mọi thắc mắc xin vui lòng liên hệ </span>
