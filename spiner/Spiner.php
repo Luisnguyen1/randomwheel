@@ -1,3 +1,25 @@
+<?php include('setupDB.php'); ?>
+<?php 
+    if (isset($_REQUEST['phone'])) {
+        if (!empty($_REQUEST['phone'])) {
+            $sql = 'SELECT TENKHACHHANG, SOLOAIVE5000, SOLOAIVE1000 FROM KHACHHANG WHERE SODIENTHOAI = "' . $_REQUEST['phone'] . '"';
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                $trangthai='yes';
+            } 
+        } else {
+            echo '<script> window.location.href="../login/randomwheel.php";</script>';
+        }  
+        
+    }
+    else {
+        echo '<script> window.location.href="../login/randomwheel.php";</script>';
+    }  
+
+?>
+
+
 <!DOCTYPE html>
 
 <html>
@@ -70,7 +92,7 @@
                     Vé 1000 điểm
                 </button>
                 <div class="my-1 flex w-[92px] min-w-0 gap-x-0.5">
-                    <h3 class="font-Montserrat min-w-0 text-justify text-[20px] font-extrabold leading-none tracking-[-0.24px] text-[rgb(255,2,2)]">00</h3>
+                    <h3 class="font-Montserrat min-w-0 text-justify text-[20px] font-extrabold leading-none tracking-[-0.24px] text-[rgb(255,2,2)]"><?php echo $row['SOLOAIVE1000'];?> </h3>
                     <div class="font-Montserrat min-w-0 text-justify text-[12px] font-semibold italic leading-[1.66] tracking-[-0.24px] text-[rgb(0,165,81)]">lượt quay</div>
                 </div>
             </div>
@@ -80,7 +102,7 @@
                     Vé 5000 điểm
                 </button>
                 <div class="my-1 flex w-[92px] min-w-0 gap-x-0.5">
-                    <h3 class="font-Montserrat min-w-0 text-justify text-[20px] font-extrabold leading-none tracking-[-0.24px] text-[rgb(255,2,2)]">01</h3>
+                    <h3 class="font-Montserrat min-w-0 text-justify text-[20px] font-extrabold leading-none tracking-[-0.24px] text-[rgb(255,2,2)]"><?php echo $row['SOLOAIVE5000'];?> </h3>
                     <div class="font-Montserrat min-w-0 text-justify text-[12px] font-semibold italic leading-[1.66] tracking-[-0.24px] text-[rgb(0,165,81)]">lượt quay</div>
                 </div>
             </div>

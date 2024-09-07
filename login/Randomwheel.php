@@ -1,12 +1,13 @@
 <?php include('setupDB.php'); ?>
 <?php
-
+$trangthai = 'sai';
 if (isset($_REQUEST['phone'])) {
     if (!empty($_REQUEST['phone'])) {
         $sql = 'SELECT TENKHACHHANG, SOLOAIVE5000, SOLOAIVE1000 FROM KHACHHANG WHERE SODIENTHOAI = "' . $_REQUEST['phone'] . '"';
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
+            $trangthai='yes';
             echo '<div class="overlay" id="overlay"></div>
     <div class="popup" id="popup">
         <h2>Chúc Mừng!</h2>
@@ -170,6 +171,14 @@ if (isset($_REQUEST['phone'])) {
         function closePopup() {
             document.getElementById('overlay').style.display = 'none';
             document.getElementById('popup').style.display = 'none';
+            <?php 
+                if($trangthai == 'yes'){
+                    ?>
+                    window.location.href="../spiner/spiner.php?phone=<?php echo $_REQUEST['phone']?>";
+            <?php
+                }
+            ?>
+            
         }
 
         // Hiển thị pop-up sau khi tải trang
