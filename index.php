@@ -59,7 +59,7 @@
             <div class="text">CÔNG TY TNHH KIÊN NAM</div>
             <h1 class="hero_title">Vòng quay</h1>
             <h1 class="title-1">Mã Số Dự Thưởng</h1>
-            <a class="button" href="login/Randomwheel.html">Quay ngay</a>
+            <a class="button" href="login/Randomwheel.php">Quay ngay</a>
         </div>
         <div class="wrapper"><img class="wrapper1" src="home/web/assets/427ddff977dab296c5d8e2b5ff9c956b.png" alt="alt text" /></div>
     </div>
