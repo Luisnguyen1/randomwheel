@@ -33,7 +33,8 @@
             position: relative;
             overflow: hidden;
             height: 100px; /* Chiều cao lớn hơn */
-            width: 200px; /* Chiều rộng lớn hơn */
+            width: 95%; /* Chiều rộng lớn hơn */
+            
         }
 
         .number {
@@ -116,7 +117,7 @@
 
             let count = 0;
             const interval = setInterval(() => {
-                const randomNum = Math.floor(Math.random() * 101); // Số ngẫu nhiên từ 0 đến 100
+                const randomNum = Math.floor(Math.random() * 999); // Số ngẫu nhiên từ 0 đến 100
                 currentNumber.textContent = randomNum;
 
                 // Hiệu ứng chuyển động
@@ -126,7 +127,7 @@
                 }, 100); // Thay đổi độ trễ nếu cần
 
                 count++;
-                if (count >= 20) { // Chạy 20 lần
+                if (count >= 30) { // Chạy 20 lần
                     clearInterval(interval);
                     currentNumber.textContent = getRandomNumber(); // Hiển thị số ngẫu nhiên từ danh sách
                 }
