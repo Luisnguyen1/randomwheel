@@ -65,8 +65,8 @@ if (isset($_REQUEST['phone'])) {
         }
 
         input[type="text"] {
-            width: 100%;
-            max-width: 300px;
+            width: 20rem; /* Cùng chiều rộng với nút bấm */
+            max-width: 100%;
             padding-left: 10px;
             min-height: 38px;
             border-radius: 5px;
@@ -75,6 +75,7 @@ if (isset($_REQUEST['phone'])) {
             background-color: white;
             margin-left: 2%;
         }
+
 
         .popup {
             display: none;
