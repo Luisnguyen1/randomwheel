@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
 .untitled-page.root {
   position: relative;
   display: flex;
@@ -23,7 +24,7 @@
 .untitled-page .hero_title {
   display: flex;
   justify-content: center;
-  font: 400 64px/0.31 "Dancing Script", Helvetica, Arial, serif;
+  font: 400 64px/0.31 "Great Vibes", cursive;
   color: #ffe100;
   text-align: center;
   letter-spacing: -0.24px;

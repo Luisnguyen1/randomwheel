@@ -1,0 +1,17 @@
+{
+    "name": "admin/randomwheel",
+    "autoload": {
+        "psr-4": {
+            "Admin\\Randomwheel\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Luisnguyen1",
+            "email": "103302594+Luisnguyen1@users.noreply.github.com"
+        }
+    ],
+    "require": {
+        "phpoffice/phpspreadsheet": "1.18"
+    }
+}

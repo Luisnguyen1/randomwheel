@@ -7,12 +7,12 @@ if (isset($_REQUEST['phone'])) {
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
-            $trangthai='yes';
+            $trangthai = 'yes';
             echo '<div class="overlay" id="overlay"></div>
     <div class="popup" id="popup">
         <h2>Chúc Mừng!</h2>
         <p>Bạn đã đăng nhập thành công!</p>
-        <p>Xin chào <b>'.$row['TENKHACHHANG'].'</b></p>
+        <p>Xin chào <b>' . $row['TENKHACHHANG'] . '</b></p>
         <button class="close-btn" onclick="closePopup()">Đóng</button>
     </div>';
         } else {
@@ -45,9 +45,12 @@ if (isset($_REQUEST['phone'])) {
     <meta charset="utf-8" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 
 
-    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
+    <link rel=" stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
     <link rel="stylesheet" type="text/css" href="web/css/common.css" />
     <link rel="stylesheet" type="text/css" href="web/css/fonts.css" />
     <link rel="stylesheet" type="text/css" href="web/css/tailwind.css" />
@@ -58,7 +61,7 @@ if (isset($_REQUEST['phone'])) {
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            margin-left: 6%; 
+            margin-left: 6%;
         }
 
         input[type="text"] {
@@ -68,7 +71,7 @@ if (isset($_REQUEST['phone'])) {
             min-height: 38px;
             border-radius: 5px;
             outline: none;
-            border: 1px solid rgb(0,165,81);
+            border: 1px solid rgb(0, 165, 81);
             background-color: white;
             margin-left: 2%;
         }
@@ -116,13 +119,12 @@ if (isset($_REQUEST['phone'])) {
         .center-text {
             justify-content: center;
             align-items: center;
-            text-align: center; 
+            text-align: center;
             width: 100%;
             flex-wrap: wrap;
             padding-left: 10px;
             padding-right: 10px;
         }
-
     </style>
 
 
@@ -146,7 +148,7 @@ if (isset($_REQUEST['phone'])) {
                     </div>
                     <div class="flex w-full flex-col gap-y-[26px]">
                         <!-- Third flexible column containing headings and buttons. -->
-                        <h1 class="font-DancingScript flex w-full justify-center text-center text-[64px] font-normal leading-[0.31] tracking-[-0.24px] text-[rgb(255,225,0)]">
+                        <h1 class="font-DancingScript flex w-full justify-center text-center text-[64px] font-normal leading-[0.31] tracking-[-0.24px] text-[rgb(255,225,0)]" style='    font-family: "Great Vibes", cursive;'>
                             <!-- Main heading for the section indicating the main topic. -->
                             Vòng quay
                         </h1>
@@ -203,14 +205,14 @@ if (isset($_REQUEST['phone'])) {
         function closePopup() {
             document.getElementById('overlay').style.display = 'none';
             document.getElementById('popup').style.display = 'none';
-            <?php 
-                if($trangthai == 'yes'){
-                    ?>
-                    window.location.href="../spiner/spiner.php?phone=<?php echo $_REQUEST['phone']?>";
             <?php
-                }
+            if ($trangthai == 'yes') {
             ?>
-            
+                window.location.href = "../spiner/spiner.php?phone=<?php echo $_REQUEST['phone'] ?>";
+            <?php
+            }
+            ?>
+
         }
 
         // Hiển thị pop-up sau khi tải trang
