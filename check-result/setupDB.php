@@ -12,8 +12,8 @@ $dbname = "hdad8728ce_data";
 $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
 if ($conn->connect_error) {
-  die("Connection error: " . $conn->connect_error);
+  echo "<script>console.log($conn->error);</script>";
+} else {
+    echo "<script>console.log('oke');</script>";
 }
-date_default_timezone_set('Asia/Ho_Chi_Minh');
-mysqli_set_charset($conn,"utf8");
 ?>

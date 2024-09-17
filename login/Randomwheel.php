@@ -1,4 +1,5 @@
-<?php include('setupDB.php'); ?>
+<?php include('setupDB.php'); 
+header("Content-type: text/html; charset=utf-8");?>
 <?php
 $trangthai = 'sai';
 if (isset($_REQUEST['phone'])) {
@@ -48,8 +49,8 @@ if (isset($_REQUEST['phone'])) {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
-
-
+    <title>Kiên Nam - Vòng quay dự thưởng</title>
+    <link rel="icon" type="image/x-icon" href="web/assets/Favicon.png">
     <link rel=" stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
     <link rel="stylesheet" type="text/css" href="web/css/common.css" />
     <link rel="stylesheet" type="text/css" href="web/css/fonts.css" />
@@ -209,7 +210,7 @@ if (isset($_REQUEST['phone'])) {
             <?php
             if ($trangthai == 'yes') {
             ?>
-                window.location.href = "../spiner/spiner.php?phone=<?php echo $_REQUEST['phone'] ?>";
+                window.location.href = "../spiner/Spiner.php?phone=<?php echo $_REQUEST['phone'] ?>";
             <?php
             }
             ?>

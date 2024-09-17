@@ -3,7 +3,7 @@ require 'vendor/autoload.php'; // Include PhpSpreadsheet autoload file
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
-
+header("Content-type: text/html; charset=utf-8");
 
 
 // Create a new Spreadsheet object
@@ -24,23 +24,23 @@ foreach ($headers as $index => $header) {
     $sheet->setCellValueByColumnAndRow($index + 1, 1, $header);
 }
 
-// $servername = "localhost";
-// $username = "hdad8728ce_data";
-// $password = "admin1234";
-// $dbname = "hdad8728ce_data";
-
 $servername = "localhost";
-$username = "root";
-$password = "";
+$username = "hdad8728ce_data";
+$password = "admin1234";
 $dbname = "hdad8728ce_data";
+date_default_timezone_set('Asia/Ho_Chi_Minh');
+// $servername = "localhost";
+// $username = "root";
+// $password = "";
+// $dbname = "hdad8728ce_data";
 
 // Query the database and fetch the data
 $conn = mysqli_connect($servername , $username, $password, $dbname);
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
-
-$sql = "SELECT SODIENTHOAI, LOAIVE, KETQUAQUAY, THOIGIANQUAY, tenkhachhang FROM ketqua";
+mysqli_set_charset($conn,"utf8");
+$sql = "SELECT SODIENTHOAI, LOAIVE, KETQUAQUAY, THOIGIANQUAY, TENKHACHHANG FROM KETQUA";
 $result = mysqli_query($conn, $sql);
 
 // Add data to the sheet
@@ -50,7 +50,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     $sheet->setCellValueByColumnAndRow(2, $rowNumber, $row['LOAIVE']);
     $sheet->setCellValueByColumnAndRow(3, $rowNumber, $row['KETQUAQUAY']);
     $sheet->setCellValueByColumnAndRow(4, $rowNumber, $row['THOIGIANQUAY']);
-    $sheet->setCellValueByColumnAndRow(5, $rowNumber, $row['tenkhachhang']);
+    $sheet->setCellValueByColumnAndRow(5, $rowNumber, $row['TENKHACHHANG']);
     $rowNumber++;
 }
 

@@ -1,16 +1,19 @@
-<?php include('setupDB.php'); ?>
+<?php include('setupDB.php');
+    header("Content-type: text/html; charset=utf-8");
+ ?>
 <?php
+$thanhcong = 'no';
 if (isset($_REQUEST['phone'])) {
     if (!empty($_REQUEST['phone'])) {
         $sql = 'SELECT TENKHACHHANG, SOLOAIVE5000, SOLOAIVE1000 FROM KHACHHANG WHERE SODIENTHOAI = "' . $_REQUEST['phone'] . '"';
         $result = $conn->query($sql);
-        
+
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
             $trangthai = 'yes';
         }
 
-        $sql_spinnerData = 'SELECT * FROM soquay';
+        $sql_spinnerData = 'SELECT SOCHUAQUAY FROM SOQUAY';
         $result_spinnerData = $conn->query($sql_spinnerData);
 
         $numbers = [];
@@ -21,11 +24,11 @@ if (isset($_REQUEST['phone'])) {
         }
         $jsonNumbers = json_encode($numbers);
     } else {
-        echo '<script> window.location.href="../login/randomwheel.php";</script>';
+        echo '<script> window.location.href="../login/Randomwheel.php";</script>';
     }
 } else {
-    echo '<script> window.location.href="../login/randomwheel.php";</script>';
-}  
+    echo '<script> window.location.href="../login/Randomwheel.php";</script>';
+}
 
 ?>
 
@@ -39,8 +42,8 @@ if (isset($_REQUEST['phone'])) {
     <meta charset="utf-8" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-
-
+    <title>Kiên Nam - Vòng quay dự thưởng</title>
+    <link rel="icon" type="image/x-icon" href="web/assets/Favicon.png">
     <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
     <link rel="stylesheet" type="text/css" href="web/css/common.css" />
     <link rel="stylesheet" type="text/css" href="web/css/fonts.css" />
@@ -56,22 +59,28 @@ if (isset($_REQUEST['phone'])) {
         }
 
         .number-box {
+
             padding: 20px;
-            background-color: #cc0000;
-            /* Màu đỏ đậm */
+            background-image: url('web/assets/Banner.png');
+            /* Đường dẫn tới hình ảnh */
+            background-size: contain;
+            /* Hoặc sử dụng cover */
+            background-position: center;
+            /* Căn giữa hình ảnh */
+            background-repeat: no-repeat;
+            /* Không lặp lại hình ảnh */
             color: white;
-            /* Màu chữ trắng */
             font-size: 60px;
-            /* Kích thước chữ lớn hơn */
             border-radius: 10px;
             text-align: center;
-            margin-bottom: 20px;
-            position: relative;
-            overflow: hidden;
-            height: 100px;
-            /* Chiều cao lớn hơn */
+            height: 35vh;
+            /* Chiều cao cần điều chỉnh nếu cần */
             width: 95%;
-            /* Chiều rộng lớn hơn */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+
 
         }
 
@@ -81,12 +90,14 @@ if (isset($_REQUEST['phone'])) {
             text-align: center;
             /* Căn giữa chữ */
             transition: transform 0.3s ease;
-            top: 50%;
+            top: 49%;
             /* Căn giữa theo chiều dọc */
             left: 50%;
             /* Căn giữa theo chiều ngang */
             transform: translate(-50%, -50%);
             /* Đưa số lên giữa */
+            color: #4CAF50;
+            font-weight: bold;
         }
 
         .selected {
@@ -160,7 +171,8 @@ if (isset($_REQUEST['phone'])) {
             <div class="number-box" id="numberBox">
                 <div class="number" id="currentNumber">0</div>
             </div>
-            <audio id="spinSound" src="src/assets/spinner-sound-36693.mp3"></audio>
+            <audio id="spinSound" src="src/assets/revolver-spin.mp3"></audio>
+            <audio id="successSound" src="src/assets/success-sound.mp3"></audio>
             <div class="mt-3.5 mr-4 ml-[5px] flex justify-between gap-x-2.5 xxs-xxxl:justify-center xxs-lg:items-center xxs-lg:gap-x-5">
                 <div class="font-Montserrat mb-2 min-w-0 text-[12px] font-semibold leading-[1.66] tracking-[-0.24px] text-[rgb(0,165,81)]">Loại vé</div>
                 <button class="font-Montserrat flex min-w-[115px] justify-center rounded-md bg-white pt-1 pr-4 pb-1 pl-4 text-center text-[12px] font-semibold leading-[1.66] tracking-[-0.64px] text-[rgb(0,165,81)] outline outline-1 outline-offset-[-1px] outline-[rgb(0,165,81)]" id="ve1000">
@@ -192,7 +204,7 @@ if (isset($_REQUEST['phone'])) {
                     <span class="font-medium">Mọi thắc mắc xin vui lòng liên hệ </span>
                     <span class="font-bold text-[rgb(0,165,81)]">Ms. Hue</span>
                     <span class="font-medium"> theo số điện thoại </span>
-                    <span class="font-bold text-[rgb(0,165,81)] underline">0964 648 581</span>
+                    <span class="font-bold text-[rgb(0,165,81)] underline"><a href ="https://zalo.me/0964648581">0964 648 581</a></span>
                     <span class="font-medium"> để được hỗ trợ kịp thời !</span>
                 </span>
             </p>
@@ -225,6 +237,7 @@ if (isset($_REQUEST['phone'])) {
         function closePopup() {
             document.getElementById('overlay').style.display = 'none';
             document.getElementById('popup').style.display = 'none';
+            window.location.href="Spiner.php?phone="+<?php echo "'".$_REQUEST['phone']."'"?>;
         }
 
 
@@ -273,7 +286,7 @@ if (isset($_REQUEST['phone'])) {
 
             let count = 0;
             const interval = setInterval(() => {
-                const randomNum = Math.floor(Math.random() * 999);
+                const randomNum = Math.floor(Math.random() * 299);
                 currentNumber.textContent = randomNum;
 
                 currentNumber.style.transform = 'translate(-50%, -150%)';
@@ -287,50 +300,56 @@ if (isset($_REQUEST['phone'])) {
                     const finalNumber = getRandomNumber();
                     currentNumber.textContent = finalNumber;
                     // Gửi lựa chọn vé qua URL
-                    window.location.href = "spiner.php?phone=" + <?php echo json_encode($_REQUEST['phone']); ?> + "&maso=" + finalNumber + "&loaive=" + selectedTicket;
+                    window.location.href = "Spiner.php?phone=" + <?php echo json_encode($_REQUEST['phone']); ?> + "&maso=" + finalNumber + "&loaive=" + selectedTicket;
                 }
             }, 100);
         });
-        
     </script>
+    <?php $conn->close();?>
+    <?php include('setupDB.php'); ?>
+    <?php
 
-    <?php 
-    
-        if(isset($_REQUEST['loaive']) && isset($_REQUEST['maso'])){
-            
-            if (!empty($_REQUEST['loaive'])&&!empty($_REQUEST['maso'])) {
-                $sql_ketqua = "INSERT INTO ketqua (SODIENTHOAI, LOAIVE, KETQUAQUAY, THOIGIANQUAY, tenkhachhang) VALUES('".$_REQUEST['phone']."','".$_REQUEST['loaive']."', ".$_REQUEST['maso'].", 'NOW()','".$row['TENKHACHHANG']."')";
-                if ($conn->query($sql_ketqua) === TRUE) {
-                    echo "<script>showPopup('Quay số thành công với số: <b>".$_REQUEST['maso']."</b>');</script>";
+    if (isset($_REQUEST['loaive']) && isset($_REQUEST['maso'])) {
+        if (!empty($_REQUEST['loaive']) && !empty($_REQUEST['maso'])) {
+            if ($_REQUEST['loaive'] == '1000') {
+                $sql_update = "UPDATE KHACHHANG SET SOLOAIVE1000 = " . $row['SOLOAIVE1000'] . " - 1 WHERE SODIENTHOAI = " . $_REQUEST['phone'];
+                if ($conn->query($sql_update) === TRUE) {
+                    echo '<script>console.log("' . $row['TENKHACHHANG'] . '")</script>';
+                    echo '<script>alert("Update thành công !"")</script>';
                 } else {
-                    echo "<script>showPopup('Quay số chưa thành công !');</script>";
+                    echo '<script>alert("Update khoong thanh cong!"")</script>';
+                    echo  $conn->error ;
                 }
-                if ( $_REQUEST['loaive'] == '1000'){
-                    echo '<script>console.log("'.$row['TENKHACHHANG'].'")</script>';
-                    $sql_update = "UPDATE khachhang SET SOLOAIVE1000 = ".$row['SOLOAIVE1000']." - 1 WHERE SODIENTHOAI = ".$_REQUEST['phone'];
-                    if ($conn->query($sql_update) === TRUE) {
-                        echo "<script>console.log('Update thành công !')</script>";
-                    } else {
-                        echo "<script>console.log('Update khoong thanh cong!')</script>";
-                        echo "<script>console.log('".$conn->error."')</script>";
-    
-                    }
-                }
-
-                if ( $_REQUEST['loaive'] == '5000'){
-                    $sql_update = "UPDATE khachhang SET SOLOAIVE5000 = ".$row['SOLOAIVE5000']." - 1 WHERE SODIENTHOAI = ".$row['SODIENTHOAI'];
-                    if ($conn->query($sql_update) === TRUE) {
-                        echo "<script>console.log('Update thành công !')</script>";
-                    } else {
-                        echo "<script>console.log('Update thành công !')</script>";
-                        echo "<script>console.log('".$conn->error."')</script>";
-    
-                    }
-                }
-                
             }
-        
+
+            if ($_REQUEST['loaive'] == '5000') {
+                $sql_update = "UPDATE KHACHHANG SET SOLOAIVE5000 = " . $row['SOLOAIVE5000'] . " - 1 WHERE SODIENTHOAI = " . $_REQUEST['phone'];
+                if ($conn->query($sql_update) === TRUE) {
+                    echo '<script>console.log("' . $row['TENKHACHHANG'] . '")</script>';
+                    echo '<script>alert("Update thành công !"")</script>';
+                } else {
+                    echo  $conn->error ;
+                }
+            }
+            $mysqltime = date ('Y-m-d H:i:s');
+            $sql_ketqua = "INSERT INTO KETQUA(SODIENTHOAI, LOAIVE, KETQUAQUAY, THOIGIANQUAY, TENKHACHHANG) VALUES('" . $_REQUEST['phone'] . "','" . $_REQUEST['loaive'] . "', " . $_REQUEST['maso'] . ", '".$mysqltime."','" . $row['TENKHACHHANG'] . "')";
+            if ($conn->query($sql_ketqua) === TRUE) {
+                echo "<script>document.getElementById('successSound').play();
+                showPopup('Quay số thành công với số: <b>" . $_REQUEST['maso'] . "</b><br>(Quý khách vui lòng ghi chú lại mã số để đối chiếu với tin nhắn của công ty)');</script>";
+            } else {
+                echo "<script>showPopup('Quay số chưa thành công !');
+                </script>";
+            }
+
+            $sql_vongquay = "DELETE FROM SOQUAY WHERE SOCHUAQUAY = ".$_REQUEST['maso'];
+            if ($conn->query($sql_vongquay) === TRUE) {
+                echo "<script>console.log('Xóa vòng quay thành công!')</script>";
+            } else {
+                echo "<script>console.log('Xóa vòng quay không thành công!')</script>";
+                echo "<script>console.log('" . $conn->error . "')</script>";
+            }
         }
+    }
     ?>
 </body>
 
